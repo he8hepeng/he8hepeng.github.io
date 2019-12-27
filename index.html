@@ -312,13 +312,31 @@
       
         
           
-            <h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><blockquote><p>使用解构从数组和对象提取值并赋值给独特的变量<br>应用场景 接口返回大JSON时 能快速分割数据 简化及美化代码 它不香嘛</p>
+            <h3 id="一-数据解构"><a href="#一-数据解构" class="headerlink" title="一.数据解构"></a>一.数据解构</h3><blockquote><p>使用解构从数组和对象提取值并赋值给独特的变量<br>应用场景 接口返回大JSON时 能快速分割数据 简化及美化代码 它不香嘛</p>
 </blockquote>
-<h4 id="数组解构"><a href="#数组解构" class="headerlink" title="数组解构:"></a>数组解构:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[a, b, c] = [1, 2, 3]</span><br><span class="line"></span><br><span class="line">=&gt; a = 1</span><br><span class="line">=&gt; b = 2</span><br><span class="line">=&gt; c = 3</span><br><span class="line"></span><br><span class="line">[a, ...b] = [1, 2, 3]</span><br><span class="line"></span><br><span class="line">=&gt; a = 1</span><br><span class="line">=&gt; b = [2, 3]</span><br></pre></td></tr></table></figure>
+<h4 id="数组解构"><a href="#数组解构" class="headerlink" title="数组解构:"></a>数组解构:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[a, b, c] = [1, 2, 3]</span><br><span class="line"></span><br><span class="line">=&gt; a = 1</span><br><span class="line">=&gt; b = 2</span><br><span class="line">=&gt; c = 3</span><br><span class="line"></span><br><span class="line">[a, ...b] = [1, 2, 3]</span><br><span class="line"></span><br><span class="line">=&gt; a = 1</span><br><span class="line">=&gt; b = [2, 3]</span><br><span class="line"></span><br><span class="line">如果你想忽略某几位</span><br><span class="line">[a,,,f] = [1,2,3,4,5,6]</span><br><span class="line">=&gt; a = 1</span><br><span class="line">=&gt; f = 4</span><br></pre></td></tr></table></figure>
 <h4 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;a, b, c&#125; = &#123;a:1, b:2, c:3&#125;</span><br><span class="line">=&gt; a = 1  b = 2 c = 3</span><br><span class="line">------- 当你的参数 跟后台返回的Key值不一样时</span><br><span class="line">(&#123;a: this.myKey&#125; = &#123;a:2&#125;)</span><br><span class="line"></span><br><span class="line">=&gt; this.myKey = 2</span><br></pre></td></tr></table></figure>
 <h4 id="function解构"><a href="#function解构" class="headerlink" title="function解构"></a>function解构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function abc (&#123;aaa, bbb, ...ccc&#125;) &#123;</span><br><span class="line">  console.log(aaa, bbb, ccc)</span><br><span class="line">&#125;</span><br><span class="line">abc(&#123;aaa:2, bbb:3, ccc:4, ddd: 5&#125;)</span><br><span class="line"></span><br><span class="line">=&gt; aaa = 2</span><br><span class="line">=&gt; bbb = 3</span><br><span class="line">=&gt; ccc = &#123;ccc: 4, ddd: 5&#125;</span><br><span class="line">=&gt; arguments[0].length = 4</span><br></pre></td></tr></table></figure>
+<!-- -------------------------------------------------------------------------------------- -->
+<h3 id="二-字符串模板"><a href="#二-字符串模板" class="headerlink" title="二.字符串模板"></a>二.字符串模板</h3><blockquote><p>使字符串的拼接 更加简洁 美观<br>应用场景 拼接多个字段的字符串 或者分行 或在vue HTML中拼接字符串</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var _name = &apos;何鹏&apos;, _age = &apos;18&apos;</span><br><span class="line">`我叫$&#123;_name&#125;, 我今年$&#123;_age&#125;岁了~`</span><br><span class="line">=&gt; &quot;我叫何鹏, 我今年18岁了~&quot;  PS(我觉得没啥毛病)</span><br></pre></td></tr></table></figure>
+<!-- -------------------------------------------------------------------------------------- -->
 
-
+<h3 id="三-默认参数"><a href="#三-默认参数" class="headerlink" title="三.默认参数"></a>三.默认参数</h3><blockquote><p>当你在业务中发现 一套逻辑可以在多个场景使用 但可能存在个别差异 你可以复用方法 并将并不是所有不同的方法参数设默认值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function obj(_name = &apos;何鹏&apos;, _age = &apos;18&apos;) &#123;</span><br><span class="line">  console.log(`我叫$&#123;_name&#125;, 我今年$&#123;_age&#125;岁了~`)</span><br><span class="line">&#125;</span><br><span class="line">obj()</span><br><span class="line">=&gt; &quot;我叫何鹏, 我今年18岁了~&quot;</span><br><span class="line">obj(&apos;陆美味&apos;, &apos;48&apos;)</span><br><span class="line">=&gt; &quot;我叫陆美味, 我今年48岁了~&quot;</span><br></pre></td></tr></table></figure>
+<!-- -------------------------------------------------------------------------------------- -->
+<h3 id="四-延展操作符"><a href="#四-延展操作符" class="headerlink" title="四.延展操作符"></a>四.延展操作符</h3><blockquote><p>数组之间合并 或者数据之间合并 可快速使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = [1, 2], b = [3, 4]</span><br><span class="line">var c = [...a, ...b]</span><br><span class="line">a.push(...b)</span><br><span class="line">=&gt; c = [1, 2, 3, 4]</span><br><span class="line">=&gt; a = [1, 2, 3, 4]</span><br><span class="line">当然 对象也可以延展</span><br><span class="line">var d = &#123;obj1: 2, obj2: 3&#125;</span><br><span class="line">var f = &#123;obj3: 2, ...d&#125;</span><br><span class="line">=&gt; f = &#123;obj3: 2, obj1: 2, obj2: 3&#125;</span><br></pre></td></tr></table></figure>
+<!-- -------------------------------------------------------------------------------------- -->
+<h3 id="五-Promise-await"><a href="#五-Promise-await" class="headerlink" title="五.Promise await"></a>五.Promise await</h3><blockquote><p>在项目中 很常用的 接口回调，或依赖于异步数据执行的函数<br>其实很简单 按照正常写法执行即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function Prom() &#123;</span><br><span class="line">  return new Promise(resolve =&gt; &#123;</span><br><span class="line">    setTimeout(()=&gt; &#123;</span><br><span class="line">      resolve(&apos;我完成了&apos;)</span><br><span class="line">    &#125;, 3000)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">await Prom().then(res =&gt; &#123;</span><br><span class="line">  console.log(res)</span><br><span class="line">  &lt;!-- do soming --&gt;</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&apos;我等他完成&apos;)</span><br><span class="line">&lt;!-- do soming --&gt;</span><br><span class="line">=&gt; Promise &#123;&lt;pending&gt;&#125;</span><br><span class="line">=&gt; 我完成了</span><br><span class="line">=&gt; 我等他完成</span><br></pre></td></tr></table></figure>
+<h4 id="六-for-in"><a href="#六-for-in" class="headerlink" title="六.for in"></a>六.for in</h4><blockquote><p>当我们需要所有可以枚举的属性时 使用此方法 symbol不可以被枚举</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let SYMBOL = Symbol()</span><br><span class="line">var a = &#123;obj: 1, obj2: 2, [Symbol(hhh)]: 3, [SYMBOL]: &apos;前端小菜鸡&apos;&#125;</span><br><span class="line">for (let key in a) &#123;</span><br><span class="line">  console.log(key, a[key])</span><br><span class="line">&#125;</span><br><span class="line">=&gt; obj 1</span><br><span class="line">=&gt; obj2 2</span><br><span class="line">=&gt; a[SYMBOL] = &apos;前端小菜鸡&apos;</span><br><span class="line">=&gt; a[&apos;hhh&apos;] = undefined</span><br><span class="line"></span><br><span class="line">Symbol 就不多做陈述了 毕竟在真是项目中 用的地方不多~</span><br></pre></td></tr></table></figure>
           
         
       
@@ -472,6 +490,363 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/05/27/electron%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E5%AD%98%E5%9C%A8C%E7%9B%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/27/electron%E5%AF%86%E7%A0%81%E5%8A%A0%E5%AF%86%E5%AD%98%E5%9C%A8C%E7%9B%98/" itemprop="url">electron加密数据 进行存储</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T22:21:57+08:00">
+                2019-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="electron加密数据-进行存储"><a href="#electron加密数据-进行存储" class="headerlink" title="electron加密数据 进行存储"></a>electron加密数据 进行存储</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">const crypto = require(&apos;crypto&apos;);</span><br><span class="line"></span><br><span class="line"> /**</span><br><span class="line">   * 创建密码 加密算法</span><br><span class="line">   *</span><br><span class="line">   * @param &#123;*&#125; data</span><br><span class="line">   * @param &#123;*&#125; password</span><br><span class="line">   */</span><br><span class="line">  aseEncode(data) &#123;</span><br><span class="line">    // 如下方法使用指定的算法与密码来创建cipher对象</span><br><span class="line">    const cipher = crypto.createCipher(&apos;aes192&apos;, this.password);</span><br><span class="line"></span><br><span class="line">    // 使用该对象的update方法来指定需要被加密的数据</span><br><span class="line">    let crypted = cipher.update(data, &apos;utf-8&apos;, &apos;hex&apos;);</span><br><span class="line"></span><br><span class="line">    crypted += cipher.final(&apos;hex&apos;);</span><br><span class="line"></span><br><span class="line">    return crypted;</span><br><span class="line">  &#125;,</span><br><span class="line">  decipher(data) &#123;</span><br><span class="line">    /* </span><br><span class="line">       该方法使用指定的算法与密码来创建 decipher对象, 第一个算法必须与加密数据时所使用的算法保持一致;</span><br><span class="line">       第二个参数用于指定解密时所使用的密码，其参数值为一个二进制格式的字符串或一个Buffer对象，该密码同样必须与加密该数据时所使用的密码保持一致</span><br><span class="line">      */</span><br><span class="line">    const decipher = crypto.createDecipher(&apos;aes192&apos;, this.password);</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">     第一个参数为一个Buffer对象或一个字符串，用于指定需要被解密的数据</span><br><span class="line">     第二个参数用于指定被解密数据所使用的编码格式，可指定的参数值为 &apos;hex&apos;, &apos;binary&apos;, &apos;base64&apos;等，</span><br><span class="line">     第三个参数用于指定输出解密数据时使用的编码格式，可选参数值为 &apos;utf-8&apos;, &apos;ascii&apos; 或 &apos;binary&apos;;</span><br><span class="line">    */</span><br><span class="line">    let decrypted = decipher.update(data, &apos;hex&apos;, &apos;utf-8&apos;);</span><br><span class="line"></span><br><span class="line">    decrypted += decipher.final(&apos;utf-8&apos;);</span><br><span class="line">    return decrypted;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/05/27/electron%E5%B8%B8%E7%94%A8%E6%89%93%E5%8C%85%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/27/electron%E5%B8%B8%E7%94%A8%E6%89%93%E5%8C%85%E5%91%BD%E4%BB%A4/" itemprop="url">electron常用打包命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T21:21:57+08:00">
+                2019-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Electron-常用的打包命令"><a href="#Electron-常用的打包命令" class="headerlink" title="Electron 常用的打包命令"></a>Electron 常用的打包命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &quot;node .electron-vue/build.js &amp;&amp; electron-builder&quot;,</span><br><span class="line">&quot;win32&quot;: &quot;node .electron-vue/build.js &amp;&amp; electron-builder --platform=win32  --arch=ia32&quot;,</span><br><span class="line">&quot;mac&quot;: &quot;node .electron-vue/build.js &amp;&amp; electron-builder --platform=mac &quot;,</span><br><span class="line">&quot;build:dir&quot;: &quot;node .electron-vue/build.js &amp;&amp; electron-builder --dir&quot;,</span><br><span class="line">&quot;build:clean&quot;: &quot;cross-env BUILD_TARGET=clean node .electron-vue/build.js&quot;,</span><br><span class="line">&quot;build:web&quot;: &quot;cross-env BUILD_TARGET=web node .electron-vue/build.js&quot;,</span><br><span class="line">&quot;dev&quot;: &quot;node .electron-vue/dev-runner.js&quot;,</span><br><span class="line">&quot;pack&quot;: &quot;npm run pack:main &amp;&amp; npm run pack:renderer&quot;,</span><br><span class="line">&quot;pack:main&quot;: &quot;cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js&quot;,</span><br><span class="line">&quot;pack:renderer&quot;: &quot;cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js&quot;,</span><br><span class="line">&quot;postinstall&quot;: &quot;&quot;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/05/27/electron%E6%89%93%E5%BC%80%E5%A4%96%E9%83%A8%E7%BD%91%E9%A1%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/27/electron%E6%89%93%E5%BC%80%E5%A4%96%E9%83%A8%E7%BD%91%E9%A1%B5/" itemprop="url">electron打开外部网页</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T21:21:57+08:00">
+                2019-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Electron-打开外部网页"><a href="#Electron-打开外部网页" class="headerlink" title="Electron 打开外部网页"></a>Electron 打开外部网页</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell.openExternal(`http://$&#123;serverData.server&#125;:$&#123;serverData.port&#125;/api/readme`);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -518,7 +893,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -531,7 +906,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
