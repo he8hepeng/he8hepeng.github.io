@@ -315,7 +315,7 @@
             <blockquote><p>首先 问题是 T3E项目 突然联系我说，出了个小问题 0.0 然后下去发现 在IE11下，20分钟操作就引起页面崩溃,<br>按理说64位系统 浏览器也拥有1.5G的内存，一个web项目 怎么会引起性能问题呢。<br>so 用IE11的内存跑了下 发现部分页面每次加载就加了200M的内存 但离开 并没有内存降低的迹象…大概了解了</p>
 </blockquote>
 <h4 id="首先的应对策略"><a href="#首先的应对策略" class="headerlink" title="首先的应对策略"></a>首先的应对策略</h4><blockquote><p>首先,确认了一下项目背景,是由前端及部分开发共同开发的。<br>技术栈为VUE + atyUI(公司基于ElementUI 进行的二次封装)。<br>而后 要了一份GIT地址 然后看了一下sonar,代码从检查来看还可以。进行人肉检查。</p>
-<p>果然发现了大量的数据处理 和页面create里的大量前置接口 0.0 还真是公司特色呐~<br>而后继续 检查。<br>发现公共的JS文件 放入了 Mixins里，确实是好习惯 但是…引入了36次…<br>发现 大量的数据操作 使用reduce filter等语法操作数据,从性能来看 要比for循环更加损耗内存,但这么严重的性能问题<br>不会是这种操作引起的 但需要记录一下。<br>打开控制台 通过PerforMance和快照 发现atyUI中存在大量闭包 无法被销毁。。原来你才是罪魁祸首 然后整理 交差</p>
+<p>果然发现了大量的数据处理 和页面create里的大量前置接口 0.0 还真是公司特色呐~<br>而后继续 检查。<br>发现公共的JS文件 放入了 Mixins里，确实是好习惯 但是…引入了36次…<br>发现 大量的数据操作 使用reduce filter等语法操作数据,从性能来看 要比for循环更加损耗内存,但这么严重的性能问题<br>不会是这种操作引起的 但需要记录一下。<br>打开控制台 通过PerforMance和快照 发现atyUI中存在大量闭包 无法被销毁。。原来你才是罪魁祸首<br>整理文档 交给项目组 整改</p>
 </blockquote>
 
 
@@ -820,6 +820,139 @@
         
           
             <h3 id="我啥也不会"><a href="#我啥也不会" class="headerlink" title="我啥也不会"></a>我啥也不会</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hePeng = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.info(<span class="string">'我啥也不会'</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'前端太难了'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(<span class="string">'加班加到屎'</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.table(<span class="string">'我只想摸鱼'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">hePeng()()()()</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/06/23/electron%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/23/electron%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" itemprop="url">electron开机自启动</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T11:23:31+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote><p>今天，一大早需求就气势汹汹的来到我身边。我的第一反应。。。这是要谋害朕啊！<br>果然，客户临时加需求。开机自启动，首次安装增加软件介绍视频以及设置页前置，好嘞 两天后就要~ 走你！</p>
+</blockquote>
+
+<h3 id="首先-拆解需求"><a href="#首先-拆解需求" class="headerlink" title="首先 拆解需求"></a>首先 拆解需求</h3><blockquote><p>需求是建立在，用户第一次安装。而第一次安装可以通过Electron或者Node去获取<br>因为我们项目做的是离线版和在线版。所以会在C盘生成.xyzs的文件夹 用来存储json格式的文件数据<br>也就是说,项目启动,通过node获取用户目录下的.xyzs 如果存在就是安装过 没有就是第一次安装咯 完美解决~（手动删除给我滚）</p>
+</blockquote>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let fs = require(&quot;fs&quot;)</span><br><span class="line">let os = require(&quot;os&quot;)</span><br><span class="line">let path = require(&quot;path&quot;)</span><br><span class="line">const dirName = os.homedir()</span><br><span class="line">const dirPath = path.join(dirName, &apos;.xyzs&apos;)</span><br><span class="line"></span><br><span class="line">fs.exists( dirPath, (exists) =&gt; &#123;</span><br><span class="line">  console.log(exists ? &quot;存在&quot; : &quot;不存在&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote><p>现在已经可以获取 是否是第一次安装 然后咧<br>app.vue中，在router-view进行子路由 增加video.vue页面 来播放动画<br>每次进入页面是 调用electron主线程发送信号，由主线程向Node发送请求 探查是否是第一次安装<br>再由主线程 event.returnValue 返回结果，来判断是否播放动画及 动画播放完毕执行setting页面的显示</p>
+</blockquote>
+
+<h3 id="自启动-那就简单了-百度"><a href="#自启动-那就简单了-百度" class="headerlink" title="自启动 那就简单了 百度"></a>自启动 那就简单了 百度</h3><hr>
+<p>站在巨人的肩膀上成长 才能使我成长的更快<br>当然 不纯是复制粘贴 读一个博客大概20分钟 理解大概一两个小时 熟练使用需要项目的磨合<br>我会越来越强的！</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Registry&#125; = require(&apos;rage-edit&apos;)</span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">const &#123;app&#125; = require(&apos;electron)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">	 </span><br><span class="line">	 url:&apos;HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run&apos;,</span><br><span class="line">	 </span><br><span class="line">	 name:&apos;my_application&apos;,</span><br><span class="line">	 </span><br><span class="line">	 //设置启动</span><br><span class="line">	 setAppStart(cbSus,cbErr)&#123;</span><br><span class="line">		Registry.set(</span><br><span class="line">			this.url,   //注册表开机启动应用路径</span><br><span class="line">			this.name, //随意写</span><br><span class="line">			app.getPath(&apos;exe&apos;), //当前应用路径，也是自动启动的应用路径</span><br><span class="line">			&apos;REG_SZ&apos;, // 固定的 </span><br><span class="line">		)</span><br><span class="line">		.then(()=&gt;&#123;</span><br><span class="line">			cbSus &amp;&amp; cbSus()</span><br><span class="line">		&#125;)</span><br><span class="line">		.catch(()=&gt;&#123;</span><br><span class="line">			cbErr &amp;&amp; cbErr()</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;,</span><br><span class="line">	</span><br><span class="line">	// 取消启动</span><br><span class="line">	cancelAppStart(cbSus,cbErr)&#123;</span><br><span class="line">	  Registry.has(this.url,this.name)</span><br><span class="line">	  	.then((res)=&gt;&#123;</span><br><span class="line">			if(res)&#123;</span><br><span class="line">				Registry.delete(this.url,this.name)</span><br><span class="line">					.then(()=&gt;&#123;</span><br><span class="line">						cbSus &amp;&amp; cbSus()	</span><br><span class="line">					&#125;)</span><br><span class="line">					.catch(()=&gt;&#123;</span><br><span class="line">						cbErr &amp;&amp; cbErr()</span><br><span class="line">					&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">		.catch(()=&gt;&#123;</span><br><span class="line">			cbErr &amp;&amp; cbErr()</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1376,7 +1509,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
