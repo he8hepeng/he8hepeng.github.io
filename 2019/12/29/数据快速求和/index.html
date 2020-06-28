@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="数组求和12345678910111213141516171.终极篇[1,2,3,4].reduce(function (prev, cur) &amp;#123;   return prev + cur; &amp;#125;,0) &#x2F;&#x2F;10 2.开始篇function sum(arr) &amp;#123;  var len = arr.length;  if(len == 0)&amp;#123;    return 0;">
+<meta name="description" content="数组求和12345678910111213141516171.终极篇[1,2,3,4].reduce(function (prev, cur) &amp;#123;   return prev + cur; &amp;#125;,0) &#x2F;&#x2F;102.开始篇function sum(arr) &amp;#123;  var len = arr.length;  if(len == 0)&amp;#123;    return 0;">
 <meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据快速求和">
 <meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;he8hepeng.github.io&#x2F;2019&#x2F;12&#x2F;29&#x2F;%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E6%B1%82%E5%92%8C&#x2F;index.html">
 <meta property="og:site_name" content="鹏の窝">
-<meta property="og:description" content="数组求和12345678910111213141516171.终极篇[1,2,3,4].reduce(function (prev, cur) &amp;#123;   return prev + cur; &amp;#125;,0) &#x2F;&#x2F;10 2.开始篇function sum(arr) &amp;#123;  var len = arr.length;  if(len == 0)&amp;#123;    return 0;">
+<meta property="og:description" content="数组求和12345678910111213141516171.终极篇[1,2,3,4].reduce(function (prev, cur) &amp;#123;   return prev + cur; &amp;#125;,0) &#x2F;&#x2F;102.开始篇function sum(arr) &amp;#123;  var len = arr.length;  if(len == 0)&amp;#123;    return 0;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-29T04:56:39.435Z">
+<meta property="og:updated_time" content="2020-01-06T05:23:26.972Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -308,7 +308,7 @@
       
 
       
-        <h3 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.终极篇</span><br><span class="line">[1,2,3,4].reduce(function (prev, cur) &#123;</span><br><span class="line">   return prev + cur;</span><br><span class="line"> &#125;,0) //10 </span><br><span class="line">2.开始篇</span><br><span class="line">function sum(arr) &#123;</span><br><span class="line">  var len = arr.length;</span><br><span class="line">  if(len == 0)&#123;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125; else if (len == 1)&#123;</span><br><span class="line">    return arr[0];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return arr[0] + sum(arr.slice(1));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">sum([1,2,3,4]) //10</span><br><span class="line">利用slice截取改变数组,再利用递归求和</span><br></pre></td></tr></table></figure>
+        <h3 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.终极篇</span><br><span class="line">[1,2,3,4].reduce(function (prev, cur) &#123;</span><br><span class="line">   return prev + cur;</span><br><span class="line"> &#125;,0) //10</span><br><span class="line">2.开始篇</span><br><span class="line">function sum(arr) &#123;</span><br><span class="line">  var len = arr.length;</span><br><span class="line">  if(len == 0)&#123;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125; else if (len == 1)&#123;</span><br><span class="line">    return arr[0];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return arr[0] + sum(arr.slice(1));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">sum([1,2,3,4]) //10</span><br><span class="line">利用slice截取改变数组,再利用递归求和</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -431,7 +431,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -444,7 +444,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -470,6 +470,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lixuguang.github.io" title="李旭光" target="_blank">李旭光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangning0916.github.io/" title="王宁" target="_blank">王宁</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

@@ -241,6 +241,383 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/01/07/axios%E5%85%A8%E5%B1%80%E9%81%AE%E7%BD%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/07/axios%E5%85%A8%E5%B1%80%E9%81%AE%E7%BD%A9/" itemprop="url">axios全局遮罩</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T11:11:06+08:00">
+                2020-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="全局遮罩"><a href="#全局遮罩" class="headerlink" title="全局遮罩"></a>全局遮罩</h3><hr>
+<p>因为全局的axios组件 所以很容易的从前置和后置拦截器中<br>通过headers向后台传输 token或者 user-info<br>并使用elementUi的 Loading.service 进行了请求的遮罩<br>本来是很舒服的一件事<br>但突然发现 因为业务需要 使用Promise.all 的遮罩缺出现了问题</p>
+<hr>
+<h4 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h4><hr>
+<p>因为大家都知道 .all 是当所有请求都success时 按照书写顺序同时返回。<br>但拦截器并不知道，当第一个接口开启拦截器后，后续接口同步开启。<br>但第一个结束的接口关闭了遮罩。其他接口却还没有完成。</p>
+<hr>
+<h4 id="对策"><a href="#对策" class="headerlink" title="对策"></a>对策</h4><hr>
+<p>增加计数器 每次开启遮罩进行计数<br>关闭之后 进行– 当等于0时即可默认所有接口完成 关闭遮罩</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">请求拦截器</span><br><span class="line">// 为了解决 promise.all的 多个参数 无法计算遮罩 增加遮罩计数器 by--刘春阳 徐速成</span><br><span class="line">if (modelIndex === 0) &#123;</span><br><span class="line">  loadingInstance = Loading.service(&#123;</span><br><span class="line">    lock: true,</span><br><span class="line">    text: &apos;努力拉取中 ~&gt;_&lt;~&apos;,</span><br><span class="line">    background: &apos;rgba(0, 0, 0, 0.7)&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">modelIndex++</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">响应拦截器</span><br><span class="line">modelIndex--</span><br><span class="line">if (modelIndex === 0) &#123;</span><br><span class="line">  if (loadingInstance) &#123;</span><br><span class="line">    loadingInstance.close()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/01/07/axios%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/07/axios%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA/" itemprop="url">axios下载错误提示</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T10:33:59+08:00">
+                2020-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Blob转换为JSON"><a href="#Blob转换为JSON" class="headerlink" title="Blob转换为JSON"></a>Blob转换为JSON</h3><hr>
+<p>今天，开发小伙伴问我。当导出失败的时候 后台返回的Message 前台没有打印。我是在 response中进行的拦截<br>发现 responseType: ‘blob’的返回值 是要给blob的类 并没有message啊。<br>从期望来看。是要将blob对象转换成 JSON 就可以了</p>
+<hr>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><hr>
+<p>但是 我所封装的axios组件中 正常的get post请求和 blob请求等 是公用一个拦截器的。<br>为了不影响其他功能。就需要做一次判断。<br>1.首先判断是否是blob请求<br>2.其次判断 type类型是否是 ‘application/json’<br>都满足是 即可转换打印</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (</span><br><span class="line">  error.config.responseType === &apos;blob&apos; &amp;&amp; </span><br><span class="line">  error.response.data.type === &apos;application.json&apos;</span><br><span class="line">  ) &#123;</span><br><span class="line">  let reader = new FileReader()</span><br><span class="line">  reader.readAsText(error.response.data, &apos;utf-8&apos;)</span><br><span class="line">  reader.onload = e =&gt; &#123;</span><br><span class="line">    Message.error(JSON.parse(reader.result))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/01/06/Vue%E4%BC%98%E5%8C%96%E5%9B%9E%E9%A1%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/06/Vue%E4%BC%98%E5%8C%96%E5%9B%9E%E9%A1%BE/" itemprop="url">Vue优化回顾</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-06T13:27:12+08:00">
+                2020-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/12/31/2019%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -571,7 +948,7 @@
       
         
           
-            <h3 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.终极篇</span><br><span class="line">[1,2,3,4].reduce(function (prev, cur) &#123;</span><br><span class="line">   return prev + cur;</span><br><span class="line"> &#125;,0) //10 </span><br><span class="line">2.开始篇</span><br><span class="line">function sum(arr) &#123;</span><br><span class="line">  var len = arr.length;</span><br><span class="line">  if(len == 0)&#123;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125; else if (len == 1)&#123;</span><br><span class="line">    return arr[0];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return arr[0] + sum(arr.slice(1));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">sum([1,2,3,4]) //10</span><br><span class="line">利用slice截取改变数组,再利用递归求和</span><br></pre></td></tr></table></figure>
+            <h3 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.终极篇</span><br><span class="line">[1,2,3,4].reduce(function (prev, cur) &#123;</span><br><span class="line">   return prev + cur;</span><br><span class="line"> &#125;,0) //10</span><br><span class="line">2.开始篇</span><br><span class="line">function sum(arr) &#123;</span><br><span class="line">  var len = arr.length;</span><br><span class="line">  if(len == 0)&#123;</span><br><span class="line">    return 0;</span><br><span class="line">  &#125; else if (len == 1)&#123;</span><br><span class="line">    return arr[0];</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return arr[0] + sum(arr.slice(1));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">sum([1,2,3,4]) //10</span><br><span class="line">利用slice截取改变数组,再利用递归求和</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1110,379 +1487,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/06/30/electron%E6%96%B0%E7%AA%97%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹏の窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/30/electron%E6%96%B0%E7%AA%97%E5%8F%A3/" itemprop="url">electron新窗口</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-30T12:20:31+08:00">
-                2019-06-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><hr>
-<h2 id="我们项目-大概有四五个新窗口-太难了-贴段代码散散心，以后就直接复制粘贴就好"><a href="#我们项目-大概有四五个新窗口-太难了-贴段代码散散心，以后就直接复制粘贴就好" class="headerlink" title="我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好"></a>我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">const &#123;</span><br><span class="line">  BrowserWindow,app</span><br><span class="line">&#125; = require(&apos;electron&apos;)</span><br><span class="line">const winURL = process.env.NODE_ENV === &apos;development&apos; ? `http://localhost:9080/#/service` : `file://$&#123;__dirname&#125;/index.html#/service`</span><br><span class="line">const &#123;getPush&#125; = require(&apos;../suspensionWindow&apos;);</span><br><span class="line">console.log(getPush)</span><br><span class="line">let PushServiceWindow</span><br><span class="line">const createPushService = function() &#123;</span><br><span class="line">  PushServiceWindow = new BrowserWindow(&#123;</span><br><span class="line">    height: 600,</span><br><span class="line">    useContentSize: true,</span><br><span class="line">    frame: false, // 要创建无边框窗口</span><br><span class="line">    width: 360,</span><br><span class="line">    transparent: true,</span><br><span class="line">    resizable: false,</span><br><span class="line">    alwaysOnTop: false,</span><br><span class="line">    type: &apos;toolbar&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  const screen = require(&apos;electron&apos;).screen;</span><br><span class="line">  const size = screen.getPrimaryDisplay().workAreaSize;</span><br><span class="line">  PushServiceWindow.setPosition(size.width - 370, 2000);</span><br><span class="line">  PushServiceWindow.loadURL(winURL)</span><br><span class="line">  // PushServiceWindow.webContents.openDevTools();</span><br><span class="line">  // PushServiceWindow.webContents.openDevTools()</span><br><span class="line">  PushServiceWindow.on(&apos;ready-to-show&apos;, () =&gt; &#123;</span><br><span class="line">    getPush.getMesuspensionWindow()</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  PushServiceWindow.on(&apos;closed&apos;, () =&gt; &#123;</span><br><span class="line">    PushServiceWindow = null</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  // PushServiceWindow.on(&apos;blur&apos;, () =&gt; &#123;</span><br><span class="line">  //   PushServiceWindow.webContents.send(&apos;appblur&apos;)</span><br><span class="line">  // &#125;)</span><br><span class="line"></span><br><span class="line">  // PushServiceWindow.on(&apos;focus&apos;, () =&gt; &#123;</span><br><span class="line">  //   PushServiceWindow.webContents.send(&apos;appfocus&apos;)</span><br><span class="line">  // &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const PushServiceWindowObj = function () &#123;</span><br><span class="line">  return PushServiceWindow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.PushServiceWindowObj = PushServiceWindowObj;</span><br><span class="line">exports.createPushService = createPushService;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/06/23/electron%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹏の窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/23/electron%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8/" itemprop="url">electron开机自启动</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-23T11:23:31+08:00">
-                2019-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote><p>今天，一大早需求就气势汹汹的来到我身边。我的第一反应。。。这是要谋害朕啊！<br>果然，客户临时加需求。开机自启动，首次安装增加软件介绍视频以及设置页前置，好嘞 两天后就要~ 走你！</p>
-</blockquote>
-
-<h3 id="首先-拆解需求"><a href="#首先-拆解需求" class="headerlink" title="首先 拆解需求"></a>首先 拆解需求</h3><blockquote><p>需求是建立在，用户第一次安装。而第一次安装可以通过Electron或者Node去获取<br>因为我们项目做的是离线版和在线版。所以会在C盘生成.xyzs的文件夹 用来存储json格式的文件数据<br>也就是说,项目启动,通过node获取用户目录下的.xyzs 如果存在就是安装过 没有就是第一次安装咯 完美解决~（手动删除给我滚）</p>
-</blockquote>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let fs = require(&quot;fs&quot;)</span><br><span class="line">let os = require(&quot;os&quot;)</span><br><span class="line">let path = require(&quot;path&quot;)</span><br><span class="line">const dirName = os.homedir()</span><br><span class="line">const dirPath = path.join(dirName, &apos;.xyzs&apos;)</span><br><span class="line"></span><br><span class="line">fs.exists( dirPath, (exists) =&gt; &#123;</span><br><span class="line">  console.log(exists ? &quot;存在&quot; : &quot;不存在&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<blockquote><p>现在已经可以获取 是否是第一次安装 然后咧<br>app.vue中，在router-view进行子路由 增加video.vue页面 来播放动画<br>每次进入页面是 调用electron主线程发送信号，由主线程向Node发送请求 探查是否是第一次安装<br>再由主线程 event.returnValue 返回结果，来判断是否播放动画及 动画播放完毕执行setting页面的显示</p>
-</blockquote>
-
-<h3 id="自启动-那就简单了-百度"><a href="#自启动-那就简单了-百度" class="headerlink" title="自启动 那就简单了 百度"></a>自启动 那就简单了 百度</h3><hr>
-<p>站在巨人的肩膀上成长 才能使我成长的更快<br>当然 不纯是复制粘贴 读一个博客大概20分钟 理解大概一两个小时 熟练使用需要项目的磨合<br>我会越来越强的！</p>
-<hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Registry&#125; = require(&apos;rage-edit&apos;)</span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">const &#123;app&#125; = require(&apos;electron)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">	 </span><br><span class="line">	 url:&apos;HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run&apos;,</span><br><span class="line">	 </span><br><span class="line">	 name:&apos;my_application&apos;,</span><br><span class="line">	 </span><br><span class="line">	 //设置启动</span><br><span class="line">	 setAppStart(cbSus,cbErr)&#123;</span><br><span class="line">		Registry.set(</span><br><span class="line">			this.url,   //注册表开机启动应用路径</span><br><span class="line">			this.name, //随意写</span><br><span class="line">			app.getPath(&apos;exe&apos;), //当前应用路径，也是自动启动的应用路径</span><br><span class="line">			&apos;REG_SZ&apos;, // 固定的 </span><br><span class="line">		)</span><br><span class="line">		.then(()=&gt;&#123;</span><br><span class="line">			cbSus &amp;&amp; cbSus()</span><br><span class="line">		&#125;)</span><br><span class="line">		.catch(()=&gt;&#123;</span><br><span class="line">			cbErr &amp;&amp; cbErr()</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;,</span><br><span class="line">	</span><br><span class="line">	// 取消启动</span><br><span class="line">	cancelAppStart(cbSus,cbErr)&#123;</span><br><span class="line">	  Registry.has(this.url,this.name)</span><br><span class="line">	  	.then((res)=&gt;&#123;</span><br><span class="line">			if(res)&#123;</span><br><span class="line">				Registry.delete(this.url,this.name)</span><br><span class="line">					.then(()=&gt;&#123;</span><br><span class="line">						cbSus &amp;&amp; cbSus()	</span><br><span class="line">					&#125;)</span><br><span class="line">					.catch(()=&gt;&#123;</span><br><span class="line">						cbErr &amp;&amp; cbErr()</span><br><span class="line">					&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">		.catch(()=&gt;&#123;</span><br><span class="line">			cbErr &amp;&amp; cbErr()</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/05/30/electron%E6%B3%A8%E5%86%8C%E5%85%A8%E5%B1%80%E5%BF%AB%E6%8D%B7%E9%94%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹏の窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/30/electron%E6%B3%A8%E5%86%8C%E5%85%A8%E5%B1%80%E5%BF%AB%E6%8D%B7%E9%94%AE/" itemprop="url">electron注册全局快捷键</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-30T05:03:24+08:00">
-                2019-05-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Electron-注册快捷键事件"><a href="#Electron-注册快捷键事件" class="headerlink" title="Electron 注册快捷键事件"></a>Electron 注册快捷键事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ipcMain.on(&apos;changeWebShot&apos;, (event, args) =&gt; &#123;</span><br><span class="line">  console.log(args)</span><br><span class="line">  globalShortcut.unregister(args[0]); // 注销上一次的热键</span><br><span class="line">  // 注册新的全局热键</span><br><span class="line">  globalShortcut.register(args[1], () =&gt; &#123;</span><br><span class="line">    // 截屏</span><br><span class="line">    Promise.race([operation.webShot()]).then(() =&gt; &#123;</span><br><span class="line">      event.returnValue = true;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">  event.returnValue = true;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1537,7 +1541,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1550,7 +1554,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1576,6 +1580,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lixuguang.github.io" title="李旭光" target="_blank">李旭光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangning0916.github.io/" title="王宁" target="_blank">王宁</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

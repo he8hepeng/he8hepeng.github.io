@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="新建窗口 我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好1234567891011121314151617181920212223242526272829303132333435363738394041424344454647const &amp;#123;  BrowserWindow,app&amp;#125; = require(&amp;apos;electron&amp;apos;)con">
+<meta name="description" content="新建窗口 我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354&#x2F;&#x2F; 引入创建窗口依赖const &amp;#123;  BrowserWindow,app&amp;#125; = require">
 <meta name="keywords" content="Electron">
 <meta property="og:type" content="article">
 <meta property="og:title" content="electron新窗口">
 <meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;he8hepeng.github.io&#x2F;2019&#x2F;06&#x2F;30&#x2F;electron%E6%96%B0%E7%AA%97%E5%8F%A3&#x2F;index.html">
 <meta property="og:site_name" content="鹏の窝">
-<meta property="og:description" content="新建窗口 我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好1234567891011121314151617181920212223242526272829303132333435363738394041424344454647const &amp;#123;  BrowserWindow,app&amp;#125; = require(&amp;apos;electron&amp;apos;)con">
+<meta property="og:description" content="新建窗口 我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354&#x2F;&#x2F; 引入创建窗口依赖const &amp;#123;  BrowserWindow,app&amp;#125; = require">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-31T03:16:44.670Z">
+<meta property="og:updated_time" content="2020-01-06T05:26:30.377Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -309,7 +309,7 @@
 
       
         <h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><hr>
-<h2 id="我们项目-大概有四五个新窗口-太难了-贴段代码散散心，以后就直接复制粘贴就好"><a href="#我们项目-大概有四五个新窗口-太难了-贴段代码散散心，以后就直接复制粘贴就好" class="headerlink" title="我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好"></a>我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">const &#123;</span><br><span class="line">  BrowserWindow,app</span><br><span class="line">&#125; = require(&apos;electron&apos;)</span><br><span class="line">const winURL = process.env.NODE_ENV === &apos;development&apos; ? `http://localhost:9080/#/service` : `file://$&#123;__dirname&#125;/index.html#/service`</span><br><span class="line">const &#123;getPush&#125; = require(&apos;../suspensionWindow&apos;);</span><br><span class="line">console.log(getPush)</span><br><span class="line">let PushServiceWindow</span><br><span class="line">const createPushService = function() &#123;</span><br><span class="line">  PushServiceWindow = new BrowserWindow(&#123;</span><br><span class="line">    height: 600,</span><br><span class="line">    useContentSize: true,</span><br><span class="line">    frame: false, // 要创建无边框窗口</span><br><span class="line">    width: 360,</span><br><span class="line">    transparent: true,</span><br><span class="line">    resizable: false,</span><br><span class="line">    alwaysOnTop: false,</span><br><span class="line">    type: &apos;toolbar&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  const screen = require(&apos;electron&apos;).screen;</span><br><span class="line">  const size = screen.getPrimaryDisplay().workAreaSize;</span><br><span class="line">  PushServiceWindow.setPosition(size.width - 370, 2000);</span><br><span class="line">  PushServiceWindow.loadURL(winURL)</span><br><span class="line">  // PushServiceWindow.webContents.openDevTools();</span><br><span class="line">  // PushServiceWindow.webContents.openDevTools()</span><br><span class="line">  PushServiceWindow.on(&apos;ready-to-show&apos;, () =&gt; &#123;</span><br><span class="line">    getPush.getMesuspensionWindow()</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  PushServiceWindow.on(&apos;closed&apos;, () =&gt; &#123;</span><br><span class="line">    PushServiceWindow = null</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  // PushServiceWindow.on(&apos;blur&apos;, () =&gt; &#123;</span><br><span class="line">  //   PushServiceWindow.webContents.send(&apos;appblur&apos;)</span><br><span class="line">  // &#125;)</span><br><span class="line"></span><br><span class="line">  // PushServiceWindow.on(&apos;focus&apos;, () =&gt; &#123;</span><br><span class="line">  //   PushServiceWindow.webContents.send(&apos;appfocus&apos;)</span><br><span class="line">  // &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const PushServiceWindowObj = function () &#123;</span><br><span class="line">  return PushServiceWindow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.PushServiceWindowObj = PushServiceWindowObj;</span><br><span class="line">exports.createPushService = createPushService;</span><br></pre></td></tr></table></figure>
+<h2 id="我们项目-大概有四五个新窗口-太难了-贴段代码散散心，以后就直接复制粘贴就好"><a href="#我们项目-大概有四五个新窗口-太难了-贴段代码散散心，以后就直接复制粘贴就好" class="headerlink" title="我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好"></a>我们项目 大概有四五个新窗口 太难了 贴段代码散散心，以后就直接复制粘贴就好</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">// 引入创建窗口依赖</span><br><span class="line">const &#123;</span><br><span class="line">  BrowserWindow,app</span><br><span class="line">&#125; = require(&apos;electron&apos;)</span><br><span class="line">const winURL = process.env.NODE_ENV === &apos;development&apos; ? `http://localhost:9080/#/service` : `file://$&#123;__dirname&#125;/index.html#/service`</span><br><span class="line">// 同步其他窗口的创建</span><br><span class="line">const &#123;getPush&#125; = require(&apos;../suspensionWindow&apos;);</span><br><span class="line">// 生命窗口对象</span><br><span class="line">let PushServiceWindow</span><br><span class="line">const createPushService = function() &#123;</span><br><span class="line">  // 创建窗口</span><br><span class="line">  PushServiceWindow = new BrowserWindow(&#123;</span><br><span class="line">    height: 600,</span><br><span class="line">    useContentSize: true,</span><br><span class="line">    frame: false, // 要创建无边框窗口</span><br><span class="line">    width: 360,</span><br><span class="line">    transparent: true,</span><br><span class="line">    resizable: false,</span><br><span class="line">    alwaysOnTop: false,</span><br><span class="line">    type: &apos;toolbar&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  // 获取窗口信息</span><br><span class="line">  const screen = require(&apos;electron&apos;).screen;</span><br><span class="line">  const size = screen.getPrimaryDisplay().workAreaSize;</span><br><span class="line">  // 定位窗口位置</span><br><span class="line">  PushServiceWindow.setPosition(size.width - 370, 2000);</span><br><span class="line">  PushServiceWindow.loadURL(winURL)</span><br><span class="line">  // PushServiceWindow.webContents.openDevTools();</span><br><span class="line">  // PushServiceWindow.webContents.openDevTools()</span><br><span class="line">  // 同步其他窗口的创建</span><br><span class="line">  PushServiceWindow.on(&apos;ready-to-show&apos;, () =&gt; &#123;</span><br><span class="line">    getPush.getMesuspensionWindow()</span><br><span class="line">  &#125;)</span><br><span class="line">  // 关闭操作 将对象销毁</span><br><span class="line">  PushServiceWindow.on(&apos;closed&apos;, () =&gt; &#123;</span><br><span class="line">    PushServiceWindow = null</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  // PushServiceWindow.on(&apos;blur&apos;, () =&gt; &#123;</span><br><span class="line">  //   PushServiceWindow.webContents.send(&apos;appblur&apos;)</span><br><span class="line">  // &#125;)</span><br><span class="line"></span><br><span class="line">  // PushServiceWindow.on(&apos;focus&apos;, () =&gt; &#123;</span><br><span class="line">  //   PushServiceWindow.webContents.send(&apos;appfocus&apos;)</span><br><span class="line">  // &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 当其他窗口需要获取本窗口对象时 将对象动态传回去</span><br><span class="line">const PushServiceWindowObj = function () &#123;</span><br><span class="line">  return PushServiceWindow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.PushServiceWindowObj = PushServiceWindowObj;</span><br><span class="line">exports.createPushService = createPushService;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -433,7 +433,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -446,7 +446,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -472,6 +472,24 @@
           
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lixuguang.github.io" title="李旭光" target="_blank">李旭光</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wangning0916.github.io/" title="王宁" target="_blank">王宁</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           

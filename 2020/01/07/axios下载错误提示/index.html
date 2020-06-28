@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Node," />
+  <meta name="keywords" content="axios," />
 
 
 
@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="最近…一直在做electron项目, 经常和node来打交道。当然没经过系统培训 不够也算是摸索了一些经验脑壳儿都快秃了，趁着最近不忙 整理整理我常用的API  一.异步 Node中的计时器">
-<meta name="keywords" content="Node">
+<meta name="description" content="Blob转换为JSON 今天，开发小伙伴问我。当导出失败的时候 后台返回的Message 前台没有打印。我是在 response中进行的拦截发现 responseType: ‘blob’的返回值 是要给blob的类 并没有message啊。从期望来看。是要将blob对象转换成 JSON 就可以了  分析 但是 我所封装的axios组件中 正常的get post请求和 blob请求等 是公用一个拦截">
+<meta name="keywords" content="axios">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node常用API">
-<meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;he8hepeng.github.io&#x2F;2019&#x2F;07&#x2F;13&#x2F;Node%E5%B8%B8%E7%94%A8API&#x2F;index.html">
+<meta property="og:title" content="axios下载错误提示">
+<meta property="og:url" content="http:&#x2F;&#x2F;https&#x2F;&#x2F;he8hepeng.github.io&#x2F;2020&#x2F;01&#x2F;07&#x2F;axios%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA&#x2F;index.html">
 <meta property="og:site_name" content="鹏の窝">
-<meta property="og:description" content="最近…一直在做electron项目, 经常和node来打交道。当然没经过系统培训 不够也算是摸索了一些经验脑壳儿都快秃了，趁着最近不忙 整理整理我常用的API  一.异步 Node中的计时器">
+<meta property="og:description" content="Blob转换为JSON 今天，开发小伙伴问我。当导出失败的时候 后台返回的Message 前台没有打印。我是在 response中进行的拦截发现 responseType: ‘blob’的返回值 是要给blob的类 并没有message啊。从期望来看。是要将blob对象转换成 JSON 就可以了  分析 但是 我所封装的axios组件中 正常的get post请求和 blob请求等 是公用一个拦截">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-01T12:54:26.755Z">
+<meta property="og:updated_time" content="2020-01-07T03:09:47.065Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://https://he8hepeng.github.io/2019/07/13/Node常用API/"/>
+  <link rel="canonical" href="http://https://he8hepeng.github.io/2020/01/07/axios下载错误提示/"/>
 
 
 
 
 
-  <title>Node常用API | 鹏の窝</title>
+  <title>axios下载错误提示 | 鹏の窝</title>
   
 
 
@@ -241,7 +241,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/07/13/Node%E5%B8%B8%E7%94%A8API/">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/01/07/axios%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -258,7 +258,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Node常用API</h1>
+          <h1 class="post-title" itemprop="name headline">axios下载错误提示</h1>
         
 
         <div class="post-meta">
@@ -270,8 +270,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T22:23:51+08:00">
-                2019-07-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T10:33:59+08:00">
+                2020-01-07
               </time>
             
 
@@ -308,11 +308,16 @@
       
 
       
-        <hr>
-<p>最近…一直在做electron项目, 经常和node来打交道。当然没经过系统培训 不够也算是摸索了一些经验<br>脑壳儿都快秃了，趁着最近不忙 整理整理我常用的API</p>
+        <h3 id="Blob转换为JSON"><a href="#Blob转换为JSON" class="headerlink" title="Blob转换为JSON"></a>Blob转换为JSON</h3><hr>
+<p>今天，开发小伙伴问我。当导出失败的时候 后台返回的Message 前台没有打印。我是在 response中进行的拦截<br>发现 responseType: ‘blob’的返回值 是要给blob的类 并没有message啊。<br>从期望来看。是要将blob对象转换成 JSON 就可以了</p>
 <hr>
-<h3 id="一-异步"><a href="#一-异步" class="headerlink" title="一.异步"></a>一.异步</h3><hr>
-<h2 id="Node中的计时器"><a href="#Node中的计时器" class="headerlink" title="Node中的计时器"></a>Node中的计时器</h2>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><hr>
+<p>但是 我所封装的axios组件中 正常的get post请求和 blob请求等 是公用一个拦截器的。<br>为了不影响其他功能。就需要做一次判断。<br>1.首先判断是否是blob请求<br>2.其次判断 type类型是否是 ‘application/json’<br>都满足是 即可转换打印</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (</span><br><span class="line">  error.config.responseType === &apos;blob&apos; &amp;&amp; </span><br><span class="line">  error.response.data.type === &apos;application.json&apos;</span><br><span class="line">  ) &#123;</span><br><span class="line">  let reader = new FileReader()</span><br><span class="line">  reader.readAsText(error.response.data, &apos;utf-8&apos;)</span><br><span class="line">  reader.onload = e =&gt; &#123;</span><br><span class="line">    Message.error(JSON.parse(reader.result))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
       
     </div>
     
@@ -329,7 +334,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Node/" rel="tag"># Node</a>
+            <a href="/tags/axios/" rel="tag"># axios</a>
           
         </div>
       
@@ -342,8 +347,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/30/electron%E6%96%B0%E7%AA%97%E5%8F%A3/" rel="next" title="electron新窗口">
-                <i class="fa fa-chevron-left"></i> electron新窗口
+              <a href="/2020/01/06/Vue%E4%BC%98%E5%8C%96%E5%9B%9E%E9%A1%BE/" rel="next" title="Vue优化回顾">
+                <i class="fa fa-chevron-left"></i> Vue优化回顾
               </a>
             
           </div>
@@ -352,8 +357,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/" rel="prev" title="我的第一天">
-                我的第一天 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/01/07/axios%E5%85%A8%E5%B1%80%E9%81%AE%E7%BD%A9/" rel="prev" title="axios全局遮罩">
+                axios全局遮罩 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-异步"><span class="nav-number">1.</span> <span class="nav-text">一.异步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node中的计时器"><span class="nav-number"></span> <span class="nav-text">Node中的计时器</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Blob转换为JSON"><span class="nav-number">1.</span> <span class="nav-text">Blob转换为JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.1.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></div>
             
 
           </div>
