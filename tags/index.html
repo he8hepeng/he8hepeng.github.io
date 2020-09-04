@@ -248,10 +248,10 @@
         
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-                目前共计 8 个标签
+                目前共计 9 个标签
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/ES6/" style="font-size: 21px; color: #6f6f6f">ES6</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #ccc">Echarts</a> <a href="/tags/Electron/" style="font-size: 30px; color: #111">Electron</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/axios/" style="font-size: 21px; color: #6f6f6f">axios</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 12px; color: #ccc">其他</a> <a href="/tags/%E5%90%90%E6%A7%BD/" style="font-size: 12px; color: #ccc">吐槽</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12px; color: #ccc">总结</a>
+              <a href="/tags/ES6/" style="font-size: 21px; color: #6f6f6f">ES6</a> <a href="/tags/Echarts/" style="font-size: 12px; color: #ccc">Echarts</a> <a href="/tags/Electron/" style="font-size: 30px; color: #111">Electron</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/axios/" style="font-size: 21px; color: #6f6f6f">axios</a> <a href="/tags/%E5%85%B6%E4%BB%96/" style="font-size: 12px; color: #ccc">其他</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 21px; color: #6f6f6f">前端知识点</a> <a href="/tags/%E5%90%90%E6%A7%BD/" style="font-size: 12px; color: #ccc">吐槽</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12px; color: #ccc">总结</a>
             </div>
           </div>
         
@@ -272,6 +272,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -315,7 +318,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -328,7 +331,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,6 +577,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'AEa6Lut4yeODLrxThVLWThMD-gzGzoHsz',
+        appKey: 'oGfzaICD4fi1twUmeAFfkaV9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

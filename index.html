@@ -241,6 +241,333 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" itemprop="url">知识点-深浅拷贝</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-03T17:06:09+08:00">
+                2020-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote><p>转载: <a href="https://lixuguang.github.io/2020/01/02/FE-guide-new/" target="_blank" rel="noopener">https://lixuguang.github.io/2020/01/02/FE-guide-new/</a><br>作者: 李旭光</p>
+<footer><strong>你的就是我的</strong><cite>鲁迅</cite></footer></blockquote>
+
+<h1 id="拷贝"><a href="#拷贝" class="headerlink" title="拷贝"></a>拷贝</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1</span><br><span class="line">&#125;</span><br><span class="line">let b = a</span><br><span class="line">a.age = 2</span><br><span class="line">console.log(b.age) // 2</span><br></pre></td></tr></table></figure>
+
+<p>从上述例子中我们可以发现，如果给一个变量赋值一个对象，那么两者的值会是同一个引用，其中一方改变，另一方也会相应改变。<br>通常在开发中我们不希望出现这样的问题，我们可以使用浅拷贝来解决这个问题。</p>
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign"></a>Object.assign</h3><p>首先可以通过 <code>Object.assign</code> 来解决这个问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">let a = &#123;</span><br><span class="line">  age: 1</span><br><span class="line">&#125;</span><br><span class="line">let b = Object.assign(&#123;&#125;, a)</span><br><span class="line">a.age = 2</span><br><span class="line">console.log(b.age) // =&gt; 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="展开运算"><a href="#展开运算" class="headerlink" title="展开运算"></a>展开运算</h3><p>当然我们也可以通过展开运算符（…）来解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  age: 1</span><br><span class="line">&#125;</span><br><span class="line">let b = &#123;...a&#125;</span><br><span class="line">a.age = 2</span><br><span class="line">console.log(b.age) // =&gt; 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr.slice()</span><br><span class="line">arr.concat()</span><br></pre></td></tr></table></figure>
+
+<p>通常浅拷贝就能解决大部分问题了，但是当我们遇到如下情况就需要使用到深拷贝了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">let a = &#123;</span><br><span class="line">  age: 1,</span><br><span class="line">  jobs: &#123;</span><br><span class="line">    first: &apos;FE&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">let b = &#123;...a&#125;</span><br><span class="line">a.jobs.first = &apos;native&apos;</span><br><span class="line">console.log(b.jobs.first) // native</span><br></pre></td></tr></table></figure>
+<p>浅拷贝只解决了第一层的问题，如果接下去的值中还有对象的话，那么就又回到刚开始的话题了，两者享有相同的引用。要解决这个问题，我们需要引入深拷贝。</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>这个问题通常可以通过 <code>JSON.parse(JSON.stringify(object))</code> 来解决，这也是最好用最简单的方法，俗称乞丐版。</p>
+<h3 id="乞丐版"><a href="#乞丐版" class="headerlink" title="乞丐版"></a>乞丐版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">let a = &#123;</span><br><span class="line">    age: 1,</span><br><span class="line">    jobs: &#123;</span><br><span class="line">        first: &apos;FE&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let b = JSON.parse(JSON.stringify(a))</span><br><span class="line">a.jobs.first = &apos;native&apos;</span><br><span class="line">console.log(b.jobs.first) // FE</span><br></pre></td></tr></table></figure>
+
+<p>但是该方法也是有局限性的：</p>
+<ul>
+<li>会忽略 undefined</li>
+<li>会忽略 symbol</li>
+<li>不能序列化函数</li>
+<li>不能解决循环引用的对象<br>举个栗子：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">let obj = &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: &#123;</span><br><span class="line">    c: 2,</span><br><span class="line">    d: 3,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj.c = obj.b</span><br><span class="line">obj.e = obj.a</span><br><span class="line">obj.b.c = obj.c</span><br><span class="line">obj.b.d = obj.b</span><br><span class="line">obj.b.e = obj.b.c</span><br><span class="line"></span><br><span class="line">let newObj = JSON.parse(JSON.stringify(obj))</span><br><span class="line">console.log(newObj) // =&gt; Uncaught TypeError: Converting circular structure to JSON</span><br></pre></td></tr></table></figure>
+
+<p>如果你有这么一个循环引用对象，你会发现你不能通过该方法深拷贝<br>在遇到函数、 <code>undefined</code> 或者 <code>symbol</code> 的时候，该对象也不能正常的序列化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">let a = &#123;</span><br><span class="line">  age: undefined,</span><br><span class="line">  sex: Symbol(&apos;fmale&apos;),</span><br><span class="line">  jobs: function() &#123;&#125;,</span><br><span class="line">  name: &apos;lixuguang&apos;</span><br><span class="line">&#125;</span><br><span class="line">let b = JSON.parse(JSON.stringify(a))</span><br><span class="line">console.log(b) // =&gt; &#123;name: &quot;lixuang&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你会发现在上述情况中，该方法会忽略掉函数和 undefined 。<br>但是在通常情况下，复杂数据都是可以序列化的，所以这个函数可以解决大部分问题，并且该函数是内置函数中处理深拷贝性能最快的。</p>
+<p>那么是否可以解决函数和循环引用的问题呢？答案是肯定可以解决，接下来是基础版本的改造</p>
+<h3 id="基础版本"><a href="#基础版本" class="headerlink" title="基础版本"></a>基础版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function myClone(target)&#123;</span><br><span class="line">  if(typeof target === &apos;object&apos;)&#123; // 判断传入目标是否是object类型</span><br><span class="line">    let cloneTarget = &#123;&#125;; // 创建克隆对象</span><br><span class="line">    for(const key in target)&#123; // 遍历目标对象</span><br><span class="line">      cloneTarget[key] = myClone(target[key]) // 递归调用 clone 方法</span><br><span class="line">    &#125;</span><br><span class="line">    return cloneTarget;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return target // 如果不是 object 返回</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写到这里已经可以帮助你应付一些面试官考察你的递归解决问题的能力。但是显然，这个深拷贝函数还是有一些问题。<br>这里只考虑了对象，没有考虑数组。<br>下面我们来做一个强化版的深拷贝，同时考虑对象、数组还有循环引用的问题。</p>
+<h3 id="强化版"><a href="#强化版" class="headerlink" title="强化版"></a>强化版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function myClone(target, map = new WeakMap()) &#123; // WeakMap =&gt; 键对象弱引用， 可被垃圾回收</span><br><span class="line">  if(typeof target === &apos;object&apos;)&#123; // 判断是否是对象</span><br><span class="line">    let cloneTarget = Array.isArray(target) ? [] : &#123;&#125;; // 判断是是数组还是对象</span><br><span class="line">    if(map.get(target)) &#123;</span><br><span class="line">      return target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    map.set(target, cloneTarget);</span><br><span class="line"></span><br><span class="line">    for(const key in target) &#123;</span><br><span class="line">      cloneTarget[key] = myClone(target[key], map)</span><br><span class="line">    &#125;</span><br><span class="line">    return cloneTarget;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return target;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然如果你的数据中含有以上三种情况下，可以使用 <code>lodash</code> 的深拷贝函数。<br>如果你所需拷贝的对象含有内置类型并且不包含函数，可以使用 <code>MessageChannel</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">function structuralClone(obj) &#123;</span><br><span class="line">  return new Promise(resolve =&gt; &#123;</span><br><span class="line">    const &#123;port1, port2&#125; = new MessageChannel();</span><br><span class="line">    port2.onmessage = ev =&gt; resolve(ev.data);</span><br><span class="line">    port1.postMessage(obj);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj = &#123;</span><br><span class="line">  a: 1, </span><br><span class="line">  b: &#123;</span><br><span class="line">    c: b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 注意该方法是异步的</span><br><span class="line">// 可以处理 undefined 和循环引用对象</span><br><span class="line">(async () =&gt; &#123;</span><br><span class="line">  const clone = await structuralClone(obj)</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>深拷贝实现方式2，可以深拷贝 <code>function</code> 、<code>symbol</code>，等等，堪称终极版</p>
+<h3 id="终极版"><a href="#终极版" class="headerlink" title="终极版"></a>终极版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">const mapTag = &apos;[object Map]&apos;;</span><br><span class="line">const setTag = &apos;[object Set]&apos;;</span><br><span class="line">const arrayTag = &apos;[object Array]&apos;;</span><br><span class="line">const objectTag = &apos;[object Object]&apos;;</span><br><span class="line">const argsTag = &apos;[object Arguments]&apos;;</span><br><span class="line"></span><br><span class="line">const boolTag = &apos;[object Boolean]&apos;;</span><br><span class="line">const dateTag = &apos;[object Date]&apos;;</span><br><span class="line">const numberTag = &apos;[object Number]&apos;;</span><br><span class="line">const stringTag = &apos;[object String]&apos;;</span><br><span class="line">const symbolTag = &apos;[object Symbol]&apos;;</span><br><span class="line">const errorTag = &apos;[object Error]&apos;;</span><br><span class="line">const regexpTag = &apos;[object RegExp]&apos;;</span><br><span class="line">const funcTag = &apos;[object Function]&apos;;</span><br><span class="line"></span><br><span class="line">const deepTag = [mapTag, setTag, arrayTag, objectTag, argsTag];</span><br><span class="line">function forEach(array, iteratee) &#123;</span><br><span class="line">  let index = -1;</span><br><span class="line">  const length = array.length;</span><br><span class="line">  while (++index &lt; length) &#123;</span><br><span class="line">    iteratee(array[index], index);</span><br><span class="line">  &#125;</span><br><span class="line">  return array;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function isObject(target) &#123;</span><br><span class="line">  const type = typeof target;</span><br><span class="line">  return target !== null &amp;&amp; (type === &apos;object&apos; || type === &apos;function&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getType(target) &#123;</span><br><span class="line">  return Object.prototype.toString.call(target);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getInit(target) &#123;</span><br><span class="line">  const Ctor = target.constructor;</span><br><span class="line">  return new Ctor();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function cloneSymbol(targe) &#123;</span><br><span class="line">  return Object(Symbol.prototype.valueOf.call(targe));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function cloneReg(targe) &#123;</span><br><span class="line">  const reFlags = /\w*$/;</span><br><span class="line">  const result = new targe.constructor(targe.source, reFlags.exec(targe));</span><br><span class="line">  result.lastIndex = targe.lastIndex;</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function cloneFunction(func) &#123;</span><br><span class="line">  const bodyReg = /(?&lt;=&#123;)(.|\n)+(?=&#125;)/m;</span><br><span class="line">  const paramReg = /(?&lt;=\().+(?=\)\s+&#123;)/;</span><br><span class="line">  const funcString = func.toString();</span><br><span class="line">  if (func.prototype) &#123;</span><br><span class="line">    const param = paramReg.exec(funcString);</span><br><span class="line">    const body = bodyReg.exec(funcString);</span><br><span class="line">    if (body) &#123;</span><br><span class="line">      if (param) &#123;</span><br><span class="line">        const paramArr = param[0].split(&apos;,&apos;);</span><br><span class="line">        return new Function(...paramArr, body[0]);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        return new Function(body[0]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      return null;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return eval(funcString);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function cloneOtherType(targe, type) &#123;</span><br><span class="line">  const Ctor = targe.constructor;</span><br><span class="line">  switch (type) &#123;</span><br><span class="line">    case boolTag:</span><br><span class="line">    case numberTag:</span><br><span class="line">    case stringTag:</span><br><span class="line">    case errorTag:</span><br><span class="line">    case dateTag:</span><br><span class="line">      return new Ctor(targe);</span><br><span class="line">    case regexpTag:</span><br><span class="line">      return cloneReg(targe);</span><br><span class="line">    case symbolTag:</span><br><span class="line">      return cloneSymbol(targe);</span><br><span class="line">    case funcTag:</span><br><span class="line">      return cloneFunction(targe);</span><br><span class="line">    default:</span><br><span class="line">      return null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function clone(target, map = new WeakMap()) &#123;</span><br><span class="line">  // 克隆原始类型</span><br><span class="line">  if (!isObject(target)) &#123;</span><br><span class="line">    return target;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 初始化</span><br><span class="line">  const type = getType(target);</span><br><span class="line">  let cloneTarget;</span><br><span class="line">  if (deepTag.includes(type)) &#123;</span><br><span class="line">    cloneTarget = getInit(target, type);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    return cloneOtherType(target, type);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 防止循环引用</span><br><span class="line">  if (map.get(target)) &#123;</span><br><span class="line">    return target;</span><br><span class="line">  &#125;</span><br><span class="line">  map.set(target, cloneTarget);</span><br><span class="line"></span><br><span class="line">  // 克隆set</span><br><span class="line">  if (type === setTag) &#123;</span><br><span class="line">    target.forEach(value =&gt; &#123;</span><br><span class="line">      cloneTarget.add(clone(value));</span><br><span class="line">    &#125;);</span><br><span class="line">    return cloneTarget;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 克隆map</span><br><span class="line">  if (type === mapTag) &#123;</span><br><span class="line">    target.forEach((value, key) =&gt; &#123;</span><br><span class="line">      cloneTarget.set(key, clone(value));</span><br><span class="line">    &#125;);</span><br><span class="line">    return cloneTarget;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 克隆对象和数组</span><br><span class="line">  const keys = type === arrayTag ? undefined : Object.keys(target);</span><br><span class="line">  forEach(keys || target, (value, key) =&gt; &#123;</span><br><span class="line">    if (keys) &#123;</span><br><span class="line">      key = value;</span><br><span class="line">    &#125;</span><br><span class="line">    cloneTarget[key] = clone(target[key], map);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  return cloneTarget;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 调用方法</span><br><span class="line">clone(target);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-new/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鹏の窝">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-new/" itemprop="url">知识点-new</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-03T11:13:22+08:00">
+                2020-09-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-new/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/03/%E7%9F%A5%E8%AF%86%E7%82%B9-new/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote><p>转载: <a href="https://lixuguang.github.io/2020/01/02/FE-guide-new/" target="_blank" rel="noopener">https://lixuguang.github.io/2020/01/02/FE-guide-new/</a><br>作者: 李旭光</p>
+<footer><strong>你的就是我的</strong><cite>鲁迅</cite></footer></blockquote>
+
+
+<h1 id="new-一个对象的过程"><a href="#new-一个对象的过程" class="headerlink" title="new 一个对象的过程"></a>new 一个对象的过程</h1><ol>
+<li>新生成一个对象</li>
+<li>链接到原型</li>
+<li>绑定<code>this</code></li>
+<li>返回新对象</li>
+</ol>
+<p>在调用<code>new</code>的过程中会发生以上四件事，我们也可以试着来自己实现一个<code>new</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">function create() &#123;</span><br><span class="line">  // 创建一个空得对象</span><br><span class="line">  let obj = new Object()</span><br><span class="line">  // 获得构造函数</span><br><span class="line">  let Con = [].shift.call(arguments)</span><br><span class="line">  // 链接到原型</span><br><span class="line">  obj.__proto__ = Con.prototype</span><br><span class="line">  // 绑定 this，执行构造函数</span><br><span class="line">  let result = Con.apply(obj, arguments)</span><br><span class="line">  // 确保 new 出来的是个对象</span><br><span class="line">  return typeof result === &apos;object&apos; ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对与实例对象来说，都是通过<code>new</code>产生的，无论是<code>function Foo()</code> 还是 <code>let a = { b : 1 }</code>。</p>
+<p>对于创建一个对象来说，更推荐使用字面量的方式创建对象（无论性能上还是可读性）。因为你使用<code>new object()</code>方式创建对象需要通过作用链一层一层找到<code>object</code>，但是你使用字面量的方式就没这个问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">function Foo() &#123;&#125;// function 就是个语法糖，内部等同于 new Function()</span><br><span class="line">let a = &#123; b: 1 &#125; // 这个字面量内部也是使用了 new Object()</span><br></pre></td></tr></table></figure>
+
+<p>对于 <code>new</code> 来说，还需要注意下运算符优先级。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">function Foo() &#123;</span><br><span class="line">  return this;</span><br><span class="line">&#125;</span><br><span class="line">Foo.getName = function () &#123;</span><br><span class="line">  console.log(&apos;1&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.getName = function () &#123;</span><br><span class="line">  console.log(&apos;2&apos;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">new Foo.getName();   // -&gt; 1</span><br><span class="line">new Foo().getName(); // -&gt; 2</span><br></pre></td></tr></table></figure>
+
+<p>从上图可以看出，<code>new Foo()</code> 的优先级大于 <code>new Foo</code> ，所以对于上述代码来说可以这样划分执行顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// js代码</span><br><span class="line"></span><br><span class="line">new (Foo.getName());</span><br><span class="line">(new Foo()).getName();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对于第一个函数来说，先执行了 <code>Foo.getName()</code> ，所以结果为 1；</li>
+<li>对于后者来说，先执行 <code>new Foo()</code> 产生了一个实例，然后通过原型链找到了 Foo 上的 getName 函数，所以结果为 2。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2020/01/07/axios%E5%85%A8%E5%B1%80%E9%81%AE%E7%BD%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -285,6 +612,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/07/axios%E5%85%A8%E5%B1%80%E9%81%AE%E7%BD%A9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/07/axios%E5%85%A8%E5%B1%80%E9%81%AE%E7%BD%A9/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -416,6 +753,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/07/axios%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/07/axios%E4%B8%8B%E8%BD%BD%E9%94%99%E8%AF%AF%E6%8F%90%E7%A4%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -544,6 +891,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/06/Vue%E4%BC%98%E5%8C%96%E5%9B%9E%E9%A1%BE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/06/Vue%E4%BC%98%E5%8C%96%E5%9B%9E%E9%A1%BE/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -662,6 +1019,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/31/2019%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/31/2019%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -796,6 +1163,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/29/%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/29/%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -922,6 +1299,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/29/%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E6%B1%82%E5%92%8C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/29/%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E6%B1%82%E5%92%8C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1040,6 +1427,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/29/echarts%E5%AF%BC%E5%87%BA%E5%9B%BE%E7%89%87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/29/echarts%E5%AF%BC%E5%87%BA%E5%9B%BE%E7%89%87/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1160,6 +1557,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/25/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%AE%9E%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/12/25/%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E5%AE%9E%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1211,248 +1618,6 @@
 <h4 id="六-for-in"><a href="#六-for-in" class="headerlink" title="六.for in"></a>六.for in</h4><blockquote><p>当我们需要所有可以枚举的属性时 使用此方法 symbol不可以被枚举</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let SYMBOL = Symbol()</span><br><span class="line">var a = &#123;obj: 1, obj2: 2, [Symbol(hhh)]: 3, [SYMBOL]: &apos;前端小菜鸡&apos;&#125;</span><br><span class="line">for (let key in a) &#123;</span><br><span class="line">  console.log(key, a[key])</span><br><span class="line">&#125;</span><br><span class="line">=&gt; obj 1</span><br><span class="line">=&gt; obj2 2</span><br><span class="line">=&gt; a[SYMBOL] = &apos;前端小菜鸡&apos;</span><br><span class="line">=&gt; a[&apos;hhh&apos;] = undefined</span><br><span class="line"></span><br><span class="line">Symbol 就不多做陈述了 毕竟在真是项目中 用的地方不多~</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/11/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹏の窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/06/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/" itemprop="url">我的第一天</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T17:08:46+08:00">
-                2019-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="我啥也不会"><a href="#我啥也不会" class="headerlink" title="我啥也不会"></a>我啥也不会</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hePeng = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.info(<span class="string">'我啥也不会'</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'前端太难了'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(<span class="string">'加班加到屎'</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.table(<span class="string">'我只想摸鱼'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">hePeng()()()()</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://https://he8hepeng.github.io/2019/07/13/Node%E5%B8%B8%E7%94%A8API/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鹏の窝">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/13/Node%E5%B8%B8%E7%94%A8API/" itemprop="url">Node常用API</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-13T22:23:51+08:00">
-                2019-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>最近…一直在做electron项目, 经常和node来打交道。当然没经过系统培训 不够也算是摸索了一些经验<br>脑壳儿都快秃了，趁着最近不忙 整理整理我常用的API</p>
-<hr>
-<h3 id="一-异步"><a href="#一-异步" class="headerlink" title="一.异步"></a>一.异步</h3><hr>
-<h2 id="Node中的计时器"><a href="#Node中的计时器" class="headerlink" title="Node中的计时器"></a>Node中的计时器</h2>
           
         
       
@@ -1541,7 +1706,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1554,7 +1719,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1796,6 +1961,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'AEa6Lut4yeODLrxThVLWThMD-gzGzoHsz',
+        appKey: 'oGfzaICD4fi1twUmeAFfkaV9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
